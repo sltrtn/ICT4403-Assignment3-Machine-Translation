@@ -36,7 +36,14 @@ def pretrained(key, data, config):
     settings, folder = config[key], ROOT / "artifacts" / key
     tokenizer = AutoTokenizer.from_pretrained(folder)
     causal = key in {"llama", "gemma"}
-    model = (AutoModelForCausalLM if causal else AutoModelForSeq2SeqLM).from_pretrained(folder).to(device()); model.eval()
+    if causal:
+        # LoRA training saves an adapter, not a standalone base checkpoint.
+        from peft import PeftModel
+        base = AutoModelForCausalLM.from_pretrained(settings["model_name"])
+        model = PeftModel.from_pretrained(base, folder).to(device())
+    else:
+        model = AutoModelForSeq2SeqLM.from_pretrained(folder).to(device())
+    model.eval()
     outputs = []; start = time.perf_counter()
     for source in data["source"]:
         prompt = causal_prompt(source) if causal else "translate English to French: " + source

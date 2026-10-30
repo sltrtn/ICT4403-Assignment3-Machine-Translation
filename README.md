@@ -14,7 +14,7 @@ the Foundations of Generative AI assignment:
 The language pair is **English -> French (en-fr)**. The selected dataset is the
 public **OPUS Books** parallel corpus:
 [OPUS Books source](https://opus.nlpl.eu/legacy/opus-books.php) and
-[Hugging Face dataset card](https://huggingface.co/datasets opus_books).
+[Hugging Face dataset card](https://huggingface.co/datasets/Helsinki-NLP/opus_books).
 The experiment uses a deterministic, cleaned subset of 10,000 training pairs,
 1,000 validation pairs, and 1,000 held-out test pairs. The split is created after
 shuffling with seed `4403`, and sentences longer than 250 characters are removed.
