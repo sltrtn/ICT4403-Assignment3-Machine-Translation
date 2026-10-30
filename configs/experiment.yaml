@@ -1,0 +1,51 @@
+# Reproducible English -> French machine-translation experiment.
+seed: 4403
+dataset:
+  name: opus_books
+  config: en-fr
+  source_lang: en
+  target_lang: fr
+  source_url: https://opus.nlpl.eu/legacy/opus-books.php
+  max_examples: 12000
+  train_size: 10000
+  validation_size: 1000
+  test_size: 1000
+  max_source_chars: 250
+  max_target_chars: 250
+basic_transformer:
+  epochs: 8
+  batch_size: 32
+  learning_rate: 0.0003
+  d_model: 256
+  nhead: 8
+  num_encoder_layers: 3
+  num_decoder_layers: 3
+  dim_feedforward: 1024
+  dropout: 0.1
+  max_length: 64
+  min_frequency: 2
+mt5:
+  model_name: google/mt5-small
+  epochs: 3
+  batch_size: 8
+  learning_rate: 0.0003
+  max_source_length: 128
+  max_target_length: 128
+llama:
+  # TinyLlama is an openly downloadable 1.1B LLaMA-architecture variant.
+  model_name: TinyLlama/TinyLlama-1.1B-Chat-v1.0
+  epochs: 1
+  batch_size: 2
+  learning_rate: 0.0002
+  max_length: 256
+gemma:
+  # Accept the Google Gemma licence on Hugging Face and run `huggingface-cli login`.
+  model_name: google/gemma-2-2b-it
+  epochs: 1
+  batch_size: 2
+  learning_rate: 0.0002
+  max_length: 256
+generation:
+  max_new_tokens: 128
+  num_beams: 4
+  temperatures: [0.2, 0.7, 1.0]

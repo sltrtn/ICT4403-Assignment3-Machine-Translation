@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.venv/
+data/
+artifacts/
+checkpoints/
+*.bin
+*.safetensors
+results/*.json
+results/*.csv
+results/figures/*.png
+results/samples/*.csv
+!results/.gitkeep
+!results/figures/.gitkeep
+!results/samples/.gitkeep
+wandb/
