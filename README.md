@@ -109,3 +109,7 @@ The final LMS attachment must be named
 name, registration number, assignment title, developed system title, dataset
 name/link, and the public GitHub repository URL. Replace the repository URL
 placeholder in the document once the GitHub repository has been created.
+
+The detailed academic report is available at
+`submission/assignment3_report.pdf` with source in
+`submission/assignment3_report.tex`.
